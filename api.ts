@@ -1,4 +1,4 @@
-const API = "http://localhost:3000/api/users/";
+const API = 'http://localhost:3000/api/users/';
 
 export const getUsers = async () => {
   const res = await fetch(API);
@@ -7,8 +7,8 @@ export const getUsers = async () => {
 
 export const loginUser = async (credentials: Object) => {
   const res = await fetch(`${API}auth/`, {
-    method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
+    method: 'POST',
+    headers: {Accept: 'application/json', 'Content-Type': 'application/json'},
     body: JSON.stringify(credentials),
   });
   return await res.json();

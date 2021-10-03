@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { getUsers } from '../api';
+import React, {useEffect, useState} from 'react';
+import {getUsers} from '../api';
 import Layout from '../components/Layout';
 import UserList from '../components/UserList';
 
 const Homescreen = () => {
+  const [users, setUsers] = useState<any[]>([]);
 
-    const [users, setUsers] = useState<any[]>([]);
+  const loadUsers = async () => {
+    const data = await getUsers();
+    setUsers(data);
+  };
 
-    const loadUsers = async () => {
-        const data = await getUsers();
-        setUsers(data);
-    }
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
-    useEffect( () => { 
-        loadUsers();
-    }, [])
-    
-
-    return (
-        <Layout>
-            <UserList users={users}></UserList>
-        </Layout>
-    )
-}
+  return (
+    <Layout>
+      <UserList users={users} />
+    </Layout>
+  );
+};
 
 export default Homescreen;
-
 
 // headerRight: () => (
 //     <TouchableOpacity>

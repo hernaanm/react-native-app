@@ -1,20 +1,21 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity } from "react-native";
-import { loginUser } from "../api";
-import Layout from "../components/Layout";
-
+import React, {useState} from 'react';
+import {StyleSheet, Text, TextInput, TouchableOpacity} from 'react-native';
+import {loginUser} from '../api';
+import Layout from '../components/Layout';
 
 const LoginScreen = () => {
   const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
-  const handleChange = (name: string, value: string) =>
-  {setCredentials({ ...credentials, [name]: value })};
+  const handleChange = (name: string, value: string) => {
+    setCredentials({...credentials, [name]: value});
+  };
 
-  const handleSubmit = () => 
-  {loginUser(credentials)}
+  const handleSubmit = () => {
+    loginUser(credentials);
+  };
 
   return (
     <Layout>
@@ -22,15 +23,15 @@ const LoginScreen = () => {
         placeholder="email"
         placeholderTextColor="#546574"
         style={styles.input}
-        onChangeText={(email)=>handleChange('email', email)}
-        autoCapitalize='none'
+        onChangeText={email => handleChange('email', email)}
+        autoCapitalize="none"
       />
-      <TextInput  
+      <TextInput
         placeholder="Password"
         placeholderTextColor="#546574"
         style={styles.input}
-        onChangeText={(password)=>handleChange('password', password)}
-        autoCapitalize='none'
+        onChangeText={password => handleChange('password', password)}
+        autoCapitalize="none"
       />
       <TouchableOpacity style={styles.buttonSave} onPress={handleSubmit}>
         <Text style={styles.buttonText}>Login</Text>
@@ -44,15 +45,15 @@ const LoginScreen = () => {
 
 const styles = StyleSheet.create({
   input: {
-    width: "90%",
+    width: '90%',
     marginBottom: 7,
     borderWidth: 1,
-    borderColor: "#10ac84",
+    borderColor: '#10ac84',
     height: 35,
     fontSize: 14,
-    color: "#ffffff",
+    color: '#ffffff',
     padding: 4,
-    textAlign: "center",
+    textAlign: 'center',
     borderRadius: 5,
   },
   buttonSave: {
@@ -61,16 +62,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 15,
     marginTop: 25,
-    backgroundColor: "#10ac94",
-    width: "25%",
+    backgroundColor: '#10ac94',
+    width: '25%',
   },
   buttonText: {
-    color: "#ffffff",
-    textAlign: "center",
+    color: '#ffffff',
+    textAlign: 'center',
   },
   tapText: {
-    color: "#10ac84",
-    textAlign: "center",
+    color: '#10ac84',
+    textAlign: 'center',
   },
 });
 export default LoginScreen;
