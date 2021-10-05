@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getUsers} from '../api';
+import api from '../api';
 import Layout from '../components/Layout';
 import UserList from '../components/UserList';
 
@@ -7,7 +7,7 @@ const Homescreen = () => {
   const [users, setUsers] = useState<any[]>([]);
 
   const loadUsers = async () => {
-    const data = await getUsers();
+    const data = await api.getUsers();
     setUsers(data);
   };
 

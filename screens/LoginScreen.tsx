@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, TouchableOpacity} from 'react-native';
-import {loginUser} from '../api';
+import api from '../api';
 import Layout from '../components/Layout';
+import {popUpAlert} from '../utils/errorAlert';
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}: any) => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -13,8 +14,17 @@ const LoginScreen = () => {
     setCredentials({...credentials, [name]: value});
   };
 
-  const handleSubmit = () => {
-    loginUser(credentials);
+  const handleSubmit = async () => {
+    const token = await api.loginUser(credentials);
+    if (token !== undefined) {
+      //Login Success
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'UserScreen'}],
+      });
+    } else {
+      popUpAlert('Wrong user or password');
+    }
   };
 
   return (
@@ -28,6 +38,7 @@ const LoginScreen = () => {
       />
       <TextInput
         placeholder="Password"
+        secureTextEntry={true}
         placeholderTextColor="#546574"
         style={styles.input}
         onChangeText={password => handleChange('password', password)}
