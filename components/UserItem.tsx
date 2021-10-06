@@ -13,7 +13,7 @@ export const UserItem = ({user}: {user: IUser}) => {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    backgroundColor: '#333333',
+    backgroundColor: '#10ac94',
     padding: 20,
     marginVertical: 8,
     borderRadius: 10,

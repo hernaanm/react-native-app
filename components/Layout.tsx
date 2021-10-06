@@ -7,7 +7,7 @@ const Layout = ({children}: {children: any}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#222f3e',
+    backgroundColor: '#FFFFFF',
     padding: 20,
     flex: 1,
     alignItems: 'center',
