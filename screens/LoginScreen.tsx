@@ -15,15 +15,19 @@ const LoginScreen = ({navigation}: any) => {
   };
 
   const handleSubmit = async () => {
-    const token = await api.loginUser(credentials);
-    if (token !== undefined) {
-      //Login Success
-      navigation.reset({
-        index: 0,
-        routes: [{name: 'UserScreen'}],
-      });
-    } else {
-      popUpAlert('Wrong user or password');
+    try {
+      const res = await api.loginUser(credentials);
+      if (res.accessToken !== undefined) {
+        //Login Success
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'UserScreen'}],
+        });
+      } else {
+        popUpAlert('Wrong user or password.');
+      }
+    } catch (e) {
+      popUpAlert('Something went wrong. Try again in a few minutes.');
     }
   };
 
